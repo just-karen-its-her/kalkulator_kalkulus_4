@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Kalkulus - Kelompok 4</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/assets/css/Style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Aplikasi Edukasi & Kalkulator Kalkulus</h1>
+        <p>Materi Pembelajaran Khusus: Diferensial (Analitik vs Numerik)</p>
+        <div class="anggota-box">
+            <div class="anggota-badge">👨‍💻 Triandi Josua S (NIM: 1062588)</div>
+            <div class="anggota-badge">👨‍💻 Muhamad Azrir (NIM: 1062575)</div>
+            <div class="anggota-badge">👩‍💻 Herlina Syailarida (NIM: 1062568)</div>
+        </div>
+    </header>
+
+    <nav>
+        <button class="nav-btn active" onclick="switchPage(this, 'page-analitik')">📈 Turunan Analitik</button>
+        <button class="nav-btn" onclick="switchPage(this, 'page-numerik')">🧮 Turunan Numerik</button>
+    </nav>
+
+    <div class="main-container">
+
+        <div id="page-analitik" class="page-section active">
+            <div class="card">
+                <h2 class="card-title">Kalkulator Turunan Eksak & Gradien Garis Singgung</h2>
+                <div class="input-group">
+                    <label for="fungsi-analitik">Masukkan Fungsi f(x):</label>
+                    <input type="text" id="fungsi-analitik" value="x^2 - 4*x" placeholder="Contoh: x^2 - 4*x">
+                    <div class="hint">Gunakan (*) untuk perkalian dan (^) untuk pangkat. Contoh: 4*x^5 + 3*x^2 - 10</div>
+                </div>
+                <div class="input-group">
+                    <label for="titik-x-analitik">Evaluasi Nilai Gradien di Titik (x):</label>
+                    <input type="number" id="titik-x-analitik" value="3" step="any">
+                </div>
+                <button class="btn" onclick="prosesAnalitik()">Hitung & Visualisasikan</button>
+
+                <div id="box-hasil-analitik" class="result-box">
+                    <h3>Hasil Analisis Matematis:</h3>
+                    <div class="result-item">Fungsi Utama f(x): <span id="out-f-asal" class="math-text"></span></div>
+                    <div class="result-item">Persamaan Turunan Pertama f'(x): <span id="out-f-turunan" class="math-text"></span></div>
+                    <div class="result-item">Nilai Gradien Kemiringan (m) di titik x: <span id="out-f-gradien" class="math-text"></span></div>
+                    
+                    <div class="explanation-card">
+                        <strong>💡 Penjelasan Langkah & Konseptual:</strong>
+                        <p id="teks-analitik"></p>
+                    </div>
+
+                    <div class="chart-wrapper">
+                        <canvas id="canvasChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-numerik" class="page-section">
+            <div class="card">
+                <h2 class="card-title">Kalkulator Pendekatan Turunan Numerik (Data Diskret)</h2>
+                <div class="input-group">
+                    <label for="fungsi-numerik">Masukkan Fungsi f(x):</label>
+                    <input type="text" id="fungsi-numerik" value="x^2" placeholder="Contoh: x^2">
+                </div>
+                <div class="input-group">
+                    <label for="titik-x-num">Titik Pusat Evaluasi (x):</label>
+                    <input type="number" id="titik-x-num" value="2" step="any">
+                </div>
+                <div class="input-group">
+                    <label for="nilai-h">Ukuran Langkah / Jarak Interval (h):</label>
+                    <input type="number" id="nilai-h" value="0.1" step="any">
+                </div>
+                <button class="btn" style="background-color: #0f172a;" onclick="prosesNumerik()">Hitung 3 Metode Hampiran</button>
+
+                <div id="box-hasil-numerik" class="result-box" style="border-left-color: #0f172a;">
+                    <h3>Hasil Komputasi Pendekatan Numerik:</h3>
+                    <div class="result-item">1. <strong>Metode Beda Maju:</strong> <span id="out-num-maju" class="math-text"></span></div>
+                    <div class="result-item">2. <strong>Metode Beda Mundur:</strong> <span id="out-num-mundur" class="math-text"></span></div>
+                    <div class="result-item">3. <strong>Metode Beda Tengah:</strong> <span id="out-num-tengah" class="math-text"></span></div>
+                    
+                    <div class="explanation-card" style="background-color: #fffbeb; border-left-color: var(--warning);">
+                        <strong>💡 Laporan & Analisis Metode:</strong>
+                        <p id="teks-numerik"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/script.js"></script>
+</body>
+</html>
